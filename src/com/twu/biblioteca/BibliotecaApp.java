@@ -10,30 +10,38 @@ public class BibliotecaApp {
     private final PrintStream writer;
     private final BufferedReader reader;
     private final Library library;
+    private Boolean readingFromConsole;
+
 
     public BibliotecaApp(PrintStream writer, BufferedReader reader, Library library) {
         this.writer = writer;
         this.reader = reader;
         this.library = library;
+        readingFromConsole = true;
     }
 
     public void run(){
         printGreeting();
         printMenu();
-        try {
-            String line = reader.readLine();
-            if(line == null) {
-                return;
+        while (readingFromConsole == true ) {
+            try {
+                String line = reader.readLine();
+                if (line == null) {
+                    return;
+                }
+                int optionChosen = parseOption(line);
+                switch (optionChosen) {
+                    case 1:
+                        printLibraryBooks();
+                        break;
+                    case 0:
+                        readingFromConsole = false;
+                        break;
+                    default:
+                        writer.println("Please select a valid option!");
+                }
+            } catch (IOException e) {
             }
-            int optionChosen = parseOption(line);
-            switch (optionChosen) {
-                case 1:
-                    printLibraryBooks();
-                    break;
-                default:
-                    writer.println("Please select a valid option!");
-            }
-        } catch (IOException e) {
         }
     }
 
@@ -57,6 +65,7 @@ public class BibliotecaApp {
     private void printMenu() {
         writer.println("Choose an option");
         writer.println("1. List of books");
+        writer.println("0. Quit");
     }
 
     public static void main(String[] args) {

@@ -32,6 +32,7 @@ public class BibliotecaAppTest {
         String printedInfo = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "1. List of books\n" +
+                "0. Quit\n" +
                 "Java for beginners | Oracle | 2000\n" +
                 "JavaScript for beginners | ES | 2006\n" +
                 "Node for beginners | Node | 2007\n" +
@@ -49,7 +50,8 @@ public class BibliotecaAppTest {
         BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
-                "1. List of books\n";
+                "1. List of books\n" +
+                "0. Quit\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
@@ -62,6 +64,7 @@ public class BibliotecaAppTest {
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "1. List of books\n" +
+                "0. Quit\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
@@ -75,7 +78,20 @@ public class BibliotecaAppTest {
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "1. List of books\n" +
+                "0. Quit\n" +
                 "Please select a valid option!\n";
+        biblioteca.run();
+        assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
+    }
+    @Test
+    public void testQuitApp() {
+        Library books = new Library(emptyLibrary);
+        BufferedReader reader = new BufferedReader(new StringReader("0"));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
+                "Choose an option\n" +
+                "1. List of books\n" +
+                "0. Quit\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }

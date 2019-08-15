@@ -77,6 +77,7 @@ public class BibliotecaApp {
         writer.println("0. Quit menu");
         writer.println("1. List of books");
         writer.println("2. Return a book");
+        writer.println("3. List of movies");
     }
 
     public void checkOutBook() {

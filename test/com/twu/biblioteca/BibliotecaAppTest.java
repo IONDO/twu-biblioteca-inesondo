@@ -32,6 +32,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -52,7 +53,8 @@ public class BibliotecaAppTest {
                 "Choose an option\n" +
                 "0. Quit menu\n" +
                 "1. List of books\n" +
-                "2. Return a book\n";
+                "2. Return a book\n" +
+                "3. List of movies\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
@@ -67,6 +69,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
@@ -82,6 +85,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
@@ -95,7 +99,8 @@ public class BibliotecaAppTest {
                 "Choose an option\n" +
                 "0. Quit menu\n" +
                 "1. List of books\n" +
-                "2. Return a book\n";
+                "2. Return a book\n" +
+                "3. List of movies\n";
         biblioteca.run();
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
@@ -117,6 +122,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -126,7 +132,8 @@ public class BibliotecaAppTest {
                 "Choose an option\n" +
                 "0. Quit menu\n" +
                 "1. List of books\n" +
-                "2. Return a book\n";
+                "2. Return a book\n" +
+                "3. List of movies\n";
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
 
@@ -147,6 +154,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -172,6 +180,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -182,6 +191,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -191,7 +201,8 @@ public class BibliotecaAppTest {
                 "Choose an option\n" +
                 "0. Quit menu\n" +
                 "1. List of books\n" +
-                "2. Return a book\n";
+                "2. Return a book\n" +
+                "3. List of movies\n";
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
 
@@ -212,6 +223,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -222,11 +234,13 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "Thank you for returning JavaScript for beginners.\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
                 "1. List of books\n" +
-                "2. Return a book\n";
+                "2. Return a book\n" +
+                "3. List of movies\n";
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
 
@@ -247,6 +261,7 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -257,11 +272,34 @@ public class BibliotecaAppTest {
                 "0. Quit menu\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
+                "3. List of movies\n" +
                 "Java for beginners is not a valid book to return.\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
                 "1. List of books\n" +
-                "2. Return a book\n";
+                "2. Return a book\n" +
+                "3. List of movies\n";
+        assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
+    }
+
+    @Test
+    public void testDisplayMovieOptionInTheMenu() {
+        Library books = new Library(Arrays.asList(
+                new Book("Java for beginners", "Oracle", 2000),
+                new Book("JavaScript for beginners", "ES", 2006),
+                new Book("Node for beginners", "Node", 2007),
+                new Book("React for beginners", "React", 2016),
+                new Book("jUnit for beginners", "Tester", 2005)
+        ));
+        BufferedReader reader = new BufferedReader(new StringReader(""));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        biblioteca.run();
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
+                "Choose an option\n" +
+                "0. Quit menu\n" +
+                "1. List of books\n" +
+                "2. Return a book\n" +
+                "3. List of movies\n";
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
 }

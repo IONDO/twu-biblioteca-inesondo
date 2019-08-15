@@ -39,6 +39,9 @@ public class BibliotecaApp {
                         case 2:
                             returnBook();
                             break;
+                        case 3:
+                            printMoviesInLibraby();
+                            break;
                         case 0:
                             readingFromConsole = false;
                             break;
@@ -60,6 +63,15 @@ public class BibliotecaApp {
         int orderedList = 1;
         for (Book book : library.getBooks()) {
             writer.println(orderedList + ". " + book.getTitle() + " | " + book.getAuthor() + " | " + book.getPublishedYear());
+            orderedList++;
+        }
+    }
+
+    private void printMoviesInLibraby() {
+        int orderedList = 1;
+        for (Movie movie : library.getMovies()) {
+            writer.println(orderedList + ". " + movie.getName() + " | "
+                    + movie.getDirector() + " | " + movie.getYear() + " | " + movie.getRating());
             orderedList++;
         }
     }
@@ -143,6 +155,12 @@ public class BibliotecaApp {
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
 
         BibliotecaApp biblioteca = new BibliotecaApp(System.out, new BufferedReader(new InputStreamReader(System.in)), library);

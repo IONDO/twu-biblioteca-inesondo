@@ -11,8 +11,9 @@ import static org.junit.Assert.*;
 public class LibraryTest {
     @Test
     public void testAddingOneBook() {
-        List emptyLibrary = new ArrayList();
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library books = new Library(emptyListOfBooks,emptyListOfMovies);
         Book java = new Book("Java for beginners", "Oracle", 2000);
         books.addBook(java);
         int numberOfBooksInLibrary = 1;
@@ -21,8 +22,9 @@ public class LibraryTest {
 
     @Test
     public void testAddingSeveralBooks() {
-        List emptyLibrary = new ArrayList();
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library books = new Library(emptyListOfBooks,emptyListOfMovies);
         Book java = new Book("Java for beginners", "Oracle", 2000);
         Book js = new Book("JS for beginners", "ES", 2006);
         Book node = new Book("Node for beginners", "Node", 2008);
@@ -39,8 +41,9 @@ public class LibraryTest {
 
     @Test
     public void testBooksOrder() {
-        List emptyLibrary = new ArrayList();
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library books = new Library(emptyListOfBooks,emptyListOfMovies);
         Book java = new Book("Java for beginners", "Oracle", 2000);
         Book js = new Book("JS for beginners", "ES", 2006);
         Book node = new Book("Node for beginners", "Node", 2008);
@@ -52,7 +55,7 @@ public class LibraryTest {
         books.addBook(react);
         books.addBook(jUnit);
         int expectedOrder = 4;
-        assertThat(books.getOrder(jUnit), equalTo(expectedOrder));
+        assertThat(books.getBookOrder(jUnit), equalTo(expectedOrder));
 
     }
 }

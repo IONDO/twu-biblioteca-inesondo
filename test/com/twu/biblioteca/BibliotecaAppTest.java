@@ -19,14 +19,21 @@ public class BibliotecaAppTest {
 
     @Test
     public void testPrintingListOfBooks() {
-        Library books = new Library(Arrays.asList(
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         String printedInfo = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
@@ -45,10 +52,11 @@ public class BibliotecaAppTest {
 
     @Test
     public void testDisplayMenu() {
-        Library  listOfAvailableBooks= new Library(emptyLibrary);
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library library = new Library(emptyListOfBooks,emptyListOfMovies);
         BufferedReader reader = new BufferedReader(new StringReader(""));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
@@ -61,9 +69,11 @@ public class BibliotecaAppTest {
 
     @Test
     public void testDisplayErrorOutOfRangeNumber() {
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library library = new Library(emptyListOfBooks,emptyListOfMovies);
         BufferedReader reader = new BufferedReader(new StringReader("10\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
@@ -77,9 +87,11 @@ public class BibliotecaAppTest {
 
     @Test
     public void testDisplayErrorNonNumeric() {
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library library = new Library(emptyListOfBooks,emptyListOfMovies);
         BufferedReader reader = new BufferedReader(new StringReader("one\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
@@ -92,9 +104,11 @@ public class BibliotecaAppTest {
     }
     @Test
     public void testQuitApp() {
-        Library books = new Library(emptyLibrary);
+        List emptyListOfBooks = new ArrayList();
+        List emptyListOfMovies = new ArrayList();
+        Library library = new Library(emptyListOfBooks,emptyListOfMovies);
         BufferedReader reader = new BufferedReader(new StringReader(""));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
                 "0. Quit menu\n" +
@@ -107,15 +121,22 @@ public class BibliotecaAppTest {
 
     @Test
     public void testCheckOutBook() {
-        Library books = new Library(Arrays.asList(
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
+
         BufferedReader reader = new BufferedReader(new StringReader("1\n" + "3\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         biblioteca.run();
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
@@ -139,15 +160,22 @@ public class BibliotecaAppTest {
 
     @Test
     public void testCheckOutBookWithInvalidInput() {
-        Library books = new Library(Arrays.asList(
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
+
         BufferedReader reader = new BufferedReader(new StringReader("1\n" + "h\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         biblioteca.run();
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
@@ -165,15 +193,22 @@ public class BibliotecaAppTest {
 
     @Test
     public void testCheckOutBookThatIsCheckedOut() {
-        Library books = new Library(Arrays.asList(
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
+
         BufferedReader reader = new BufferedReader(new StringReader("1\n" + "1\n" + "1\n" + "1\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         biblioteca.run();
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
@@ -208,15 +243,22 @@ public class BibliotecaAppTest {
 
     @Test
     public void testReturningBook() {
-        Library books = new Library(Arrays.asList(
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
+
         BufferedReader reader = new BufferedReader(new StringReader("1\n" + "2\n" + "2\n" + "2\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         biblioteca.run();
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
@@ -246,15 +288,22 @@ public class BibliotecaAppTest {
 
     @Test
     public void testReturningBookThatIsNotCheckedOut() {
-        Library books = new Library(Arrays.asList(
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
+
         BufferedReader reader = new BufferedReader(new StringReader("1\n" + "2\n" + "2\n" + "1\n"));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         biblioteca.run();
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
@@ -283,16 +332,23 @@ public class BibliotecaAppTest {
     }
 
     @Test
-    public void testDisplayMovieOptionInTheMenu() {
-        Library books = new Library(Arrays.asList(
+    public void testDisplayMoviesOptionInTheMenu() {
+        Library library = new Library(Arrays.asList(
                 new Book("Java for beginners", "Oracle", 2000),
                 new Book("JavaScript for beginners", "ES", 2006),
                 new Book("Node for beginners", "Node", 2007),
                 new Book("React for beginners", "React", 2016),
                 new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
+
         BufferedReader reader = new BufferedReader(new StringReader(""));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, books);
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
         biblioteca.run();
         String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
                 "Choose an option\n" +
@@ -300,6 +356,39 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n";
+        assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
+    }
+
+    @Test
+    public void testDisplayListOfMoviesInLibrary() {
+        Library library = new Library(Arrays.asList(
+                new Book("Java for beginners", "Oracle", 2000),
+                new Book("JavaScript for beginners", "ES", 2006),
+                new Book("Node for beginners", "Node", 2007),
+                new Book("React for beginners", "React", 2016),
+                new Book("jUnit for beginners", "Tester", 2005)
+        ), Arrays.asList(
+                new Movie("Titanic", 1998, "James Cameron", 7.8),
+                new Movie("Twelve Angry Men", 1954, "Sidney Lumet", 8.9),
+                new Movie("A Walk to Remember", 2002, "Adam Shankman", 7.4),
+                new Movie("The Color Purple", 1986, "Steven Spielberg", 7.8),
+                new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
+        ));
+
+        BufferedReader reader = new BufferedReader(new StringReader("3\n"));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library);
+        biblioteca.run();
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
+                "Choose an option\n" +
+                "0. Quit menu\n" +
+                "1. List of books\n" +
+                "2. Return a book\n" +
+                "3. List of movies\n" +
+                "1. Titanic | James Cameron | 1998 | 7.8\n" +
+                "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
+                "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
+                "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n"+
+                "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n";
         assertThat(new String(output.toByteArray()), equalTo(expectedMessage));
     }
 }

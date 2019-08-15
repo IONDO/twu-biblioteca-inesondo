@@ -23,16 +23,21 @@ public class BibliotecaApp {
     public void run(){
         printGreeting();
         printMenu();
-        while (readingFromConsole == true ) {
+        if(readingFromConsole == true ) {
+            String line;
             try {
-                String line = reader.readLine();
+                while ((line = reader.readLine()) != null) {
                 if (line == null) {
                     return;
                 }
-                int optionChosen = parseOption(line);
-                switch (optionChosen) {
+                int chosenOption = parseOption(line);
+                switch (chosenOption) {
                     case 1:
-                        printLibraryBooks();
+                        printBooksInLibraby();
+                        checkOutBook();
+                        break;
+                    case 2:
+                        returnBook();
                         break;
                     case 0:
                         readingFromConsole = false;
@@ -40,6 +45,7 @@ public class BibliotecaApp {
                     default:
                         writer.println("Please select a valid option!");
                 }
+            }reader.close();
             } catch (IOException e) {
             }
         }
@@ -48,9 +54,11 @@ public class BibliotecaApp {
     private void printGreeting() {
         writer.println("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!");
     }
-    private void printLibraryBooks() {
+    private void printBooksInLibraby() {
+        int orderedList = 1;
         for ( Book book: library.getBooks()) {
-            writer.println(book.getTitle() + " | " + book.getAuthor() + " | " + book.getPublishedYear());
+                writer.println(orderedList + ". " + book.getTitle() + " | " + book.getAuthor() + " | " + book.getPublishedYear());
+                orderedList++;
         }
     }
 
@@ -64,8 +72,65 @@ public class BibliotecaApp {
 
     private void printMenu() {
         writer.println("Choose an option");
+        writer.println("0. Quit menu");
         writer.println("1. List of books");
-        writer.println("0. Quit");
+        writer.println("2. Return a book");
+    }
+
+    public void checkOutBook() {
+        int chosenBookOrder = 0;
+        try {
+            String line = reader.readLine();
+            if (line == null) {
+                return;
+            }
+            chosenBookOrder = parseOption(line);
+            if(chosenBookOrder < 0) {
+                return;
+            }
+        }
+        catch (IOException ignored) {}
+        if(chosenBookOrder <= library.size() || chosenBookOrder > 0) {
+            Book chosenBook = library.getBook(chosenBookOrder);
+            if (chosenBook.getStatusCheckedOut() == true || chosenBook == null) {
+                writer.println("Sorry, " + chosenBook.getTitle() + " is not available.");
+                printMenu();
+            } else if (chosenBookOrder <= library.size()) {
+                chosenBook.setStatusCheckedOut(true);
+                writer.println("Thank you! Enjoy reading " + chosenBook.getTitle() + ".");
+                printMenu();
+            }
+        } else {
+            writer.println("Please, select a valid option.");
+            printMenu();
+        }
+    }
+
+    public void returnBook() {
+        int chosenBookOrder = 0;
+        try {
+            String line = reader.readLine();
+            if (line == null) {
+                return;
+            }
+            chosenBookOrder = parseOption(line);
+        }
+        catch (IOException ignored) {}
+        if(chosenBookOrder <= library.size()){
+            Book chosenBook =library.getBook(chosenBookOrder);
+            if(chosenBook.getStatusCheckedOut() == true) {
+                chosenBook.setStatusCheckedOut(false);
+                writer.println("Thank you for returning " + chosenBook.getTitle() + ".");
+                printMenu();
+            } else {
+                writer.println(chosenBook.getTitle() + " is not a valid book to return.");
+                printMenu();
+            }
+        } else {
+            writer.println("This is not a valid book to return.");
+            printMenu();
+        }
+
     }
 
     public static void main(String[] args) {

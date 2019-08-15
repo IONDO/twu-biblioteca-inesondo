@@ -20,32 +20,33 @@ public class BibliotecaApp {
         readingFromConsole = true;
     }
 
-    public void run(){
+    public void run() {
         printGreeting();
         printMenu();
-        if(readingFromConsole == true ) {
+        if (readingFromConsole == true) {
             String line;
             try {
                 while ((line = reader.readLine()) != null) {
-                if (line == null) {
-                    return;
+                    if (line == null) {
+                        return;
+                    }
+                    int chosenOption = parseOption(line);
+                    switch (chosenOption) {
+                        case 1:
+                            printBooksInLibraby();
+                            checkOutBook();
+                            break;
+                        case 2:
+                            returnBook();
+                            break;
+                        case 0:
+                            readingFromConsole = false;
+                            break;
+                        default:
+                            writer.println("Please select a valid option!");
+                    }
                 }
-                int chosenOption = parseOption(line);
-                switch (chosenOption) {
-                    case 1:
-                        printBooksInLibraby();
-                        checkOutBook();
-                        break;
-                    case 2:
-                        returnBook();
-                        break;
-                    case 0:
-                        readingFromConsole = false;
-                        break;
-                    default:
-                        writer.println("Please select a valid option!");
-                }
-            }reader.close();
+                reader.close();
             } catch (IOException e) {
             }
         }
@@ -54,11 +55,12 @@ public class BibliotecaApp {
     private void printGreeting() {
         writer.println("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!");
     }
+
     private void printBooksInLibraby() {
         int orderedList = 1;
-        for ( Book book: library.getBooks()) {
-                writer.println(orderedList + ". " + book.getTitle() + " | " + book.getAuthor() + " | " + book.getPublishedYear());
-                orderedList++;
+        for (Book book : library.getBooks()) {
+            writer.println(orderedList + ". " + book.getTitle() + " | " + book.getAuthor() + " | " + book.getPublishedYear());
+            orderedList++;
         }
     }
 
@@ -85,12 +87,12 @@ public class BibliotecaApp {
                 return;
             }
             chosenBookOrder = parseOption(line);
-            if(chosenBookOrder < 0) {
+            if (chosenBookOrder < 0) {
                 return;
             }
+        } catch (IOException ignored) {
         }
-        catch (IOException ignored) {}
-        if(chosenBookOrder <= library.size() || chosenBookOrder > 0) {
+        if (chosenBookOrder <= library.size() || chosenBookOrder > 0) {
             Book chosenBook = library.getBook(chosenBookOrder);
             if (chosenBook.getStatusCheckedOut() == true || chosenBook == null) {
                 writer.println("Sorry, " + chosenBook.getTitle() + " is not available.");
@@ -114,11 +116,11 @@ public class BibliotecaApp {
                 return;
             }
             chosenBookOrder = parseOption(line);
+        } catch (IOException ignored) {
         }
-        catch (IOException ignored) {}
-        if(chosenBookOrder <= library.size()){
-            Book chosenBook =library.getBook(chosenBookOrder);
-            if(chosenBook.getStatusCheckedOut() == true) {
+        if (chosenBookOrder <= library.size()) {
+            Book chosenBook = library.getBook(chosenBookOrder);
+            if (chosenBook.getStatusCheckedOut() == true) {
                 chosenBook.setStatusCheckedOut(false);
                 writer.println("Thank you for returning " + chosenBook.getTitle() + ".");
                 printMenu();

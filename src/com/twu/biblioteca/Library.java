@@ -26,9 +26,10 @@ public class Library {
         return books;
     }
 
-    public Book getBook(int order){
+    public Book getBook(int order) {
         return books.get(order - 1);
     }
+
     public void removeBook(Book book) {
         books.remove(book);
     }

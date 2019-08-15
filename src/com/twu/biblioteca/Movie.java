@@ -23,8 +23,16 @@ public class Movie {
         return year;
     }
 
+    public void setStatusCheckedOut(Boolean statusCheckedOut) {
+        this.statusCheckedOut = statusCheckedOut;
+    }
+
     public String getDirector() {
         return director;
+    }
+
+    public Boolean getStatusCheckedOut() {
+        return statusCheckedOut;
     }
 
     public double getRating() {

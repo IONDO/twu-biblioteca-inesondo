@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Arrays;
+import java.util.Optional;
 
 public class BibliotecaApp {
     private final PrintStream writer;
@@ -32,6 +33,10 @@ public class BibliotecaApp {
                     }
                     int chosenOption = parseOption(line);
                     switch (chosenOption) {
+                        case 0:
+                            readingFromConsole = false;
+                            reader.close();
+                            break;
                         case 1:
                             printBooksInLibraby();
                             checkOutBook();
@@ -41,17 +46,13 @@ public class BibliotecaApp {
                             break;
                         case 3:
                             printMoviesInLibraby();
-                            break;
-                        case 0:
-                            readingFromConsole = false;
+                            checkOutMovie();
                             break;
                         default:
                             writer.println("Please select a valid option!");
                     }
-                }
-                reader.close();
-            } catch (IOException e) {
-            }
+                } reader.close();
+            } catch (IOException e) {}
         }
     }
 
@@ -92,20 +93,28 @@ public class BibliotecaApp {
         writer.println("3. List of movies");
     }
 
-    public void checkOutBook() {
+    public int readLine() {
+        Optional<String> optionalString = Optional.empty();
         int chosenBookOrder = 0;
         try {
             String line = reader.readLine();
-            if (line == null) {
-                return;
-            }
-            chosenBookOrder = parseOption(line);
-            if (chosenBookOrder < 0) {
-                return;
+            optionalString = Optional.ofNullable(line);
+            if (optionalString.isPresent()) {
+                chosenBookOrder = parseOption(line);
             }
         } catch (IOException ignored) {
         }
-        if (chosenBookOrder <= library.size() || chosenBookOrder > 0) {
+        return chosenBookOrder;
+    }
+
+    public void checkOutBook() {
+        int chosenBookOrder = readLine();
+        if (chosenBookOrder < 0) {
+            writer.println("Please, select a valid option.");
+            printMenu();
+            return;
+        }
+        if (chosenBookOrder <= library.size() && chosenBookOrder > 0) {
             Book chosenBook = library.getBook(chosenBookOrder);
             if (chosenBook.getStatusCheckedOut() == true || chosenBook == null) {
                 writer.println("Sorry, " + chosenBook.getTitle() + " is not available.");
@@ -115,21 +124,44 @@ public class BibliotecaApp {
                 writer.println("Thank you! Enjoy reading " + chosenBook.getTitle() + ".");
                 printMenu();
             }
-        } else {
+        } else if(chosenBookOrder > library.size() || chosenBookOrder == 0) {
             writer.println("Please, select a valid option.");
             printMenu();
         }
     }
 
-    public void returnBook() {
-        int chosenBookOrder = 0;
-        try {
-            String line = reader.readLine();
-            if (line == null) {
-                return;
+    public void checkOutMovie() {
+        int chosenMovieOrder = readLine();
+        if (chosenMovieOrder < 0) {
+            writer.println("Please, select a valid option.");
+            printMenu();
+            return;
+        }
+        if (chosenMovieOrder <= library.size() && chosenMovieOrder > 0) {
+            Movie chosenMovie = library.getMovie(chosenMovieOrder);
+            if (chosenMovie.getStatusCheckedOut() == true || chosenMovie == null) {
+                writer.println("Sorry, " + chosenMovie.getName() + " is not available.");
+                printMenu();
+            } else if (chosenMovieOrder <= library.size()) {
+                chosenMovie.setStatusCheckedOut(true);
+                writer.println("Thank you! Enjoy watching " + chosenMovie.getName() + ".");
+                printMenu();
             }
-            chosenBookOrder = parseOption(line);
-        } catch (IOException ignored) {
+        } else if(chosenMovieOrder > library.size() || chosenMovieOrder == 0) {
+            writer.println("Please, select a valid option.");
+            printMenu();
+        }
+
+    }
+
+    public Boolean getReadingFromConsole() {
+        return readingFromConsole;
+    }
+
+    public void returnBook() {
+        int chosenBookOrder = readLine();
+        if (chosenBookOrder < 0) {
+            return;
         }
         if (chosenBookOrder <= library.size()) {
             Book chosenBook = library.getBook(chosenBookOrder);
@@ -145,6 +177,7 @@ public class BibliotecaApp {
             writer.println("This is not a valid book to return.");
             printMenu();
         }
+
 
     }
 

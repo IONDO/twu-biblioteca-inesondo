@@ -11,55 +11,67 @@ public class BibliotecaApp {
     private final PrintStream writer;
     private final BufferedReader reader;
     private final Library library;
-    private Boolean readingFromConsole;
+    private final Authentication authentication;
 
 
-    public BibliotecaApp(PrintStream writer, BufferedReader reader, Library library) {
+    public BibliotecaApp(PrintStream writer, BufferedReader reader, Library library, Authentication authentication) {
         this.writer = writer;
         this.reader = reader;
         this.library = library;
-        readingFromConsole = true;
+        this.authentication = authentication;
     }
 
     public void run() {
         printGreeting();
+        authenticateUser();
         printMenu();
-        if (readingFromConsole == true) {
-            String line;
-            try {
-                while ((line = reader.readLine()) != null) {
-                    if (line == null) {
-                        return;
-                    }
-                    int chosenOption = parseOption(line);
-                    switch (chosenOption) {
-                        case 0:
-                            readingFromConsole = false;
-                            reader.close();
-                            break;
-                        case 1:
-                            printBooksInLibrary();
-                            checkOutBook();
-                            break;
-                        case 2:
-                            returnBook();
-                            break;
-                        case 3:
-                            printMoviesInLibrary();
-                            checkOutMovie();
-                            break;
-                        default:
-                            writer.println("Please select a valid option!");
-                    }
+        String line;
+        try {
+            while ((line = reader.readLine()) != null) {
+                int chosenOption = parseOption(line);
+                switch (chosenOption) {
+                    case 0:
+                        authentication.logout();
+                        reader.close();
+                        break;
+                    case 1:
+                        printBooksInLibrary();
+                        checkOutBook();
+                        break;
+                    case 2:
+                        returnBook();
+                        break;
+                    case 3:
+                        printMoviesInLibrary();
+                        checkOutMovie();
+                        break;
+                    default:
+                        writer.println("Please select a valid option!");
                 }
-                reader.close();
-            } catch (IOException e) {
             }
+            reader.close();
+        } catch (IOException e) {
         }
     }
 
+
     private void printGreeting() {
         writer.println("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!");
+    }
+
+    private void authenticateUser() {
+        authenticationAttempt();
+        while (!authentication.isLoggedIn()) {
+            writer.println("Either the userId or the password is incorrect");
+            authenticationAttempt();
+        }
+        ;
+    }
+
+    private void authenticationAttempt() {
+        String userId = getUserDataInput("userId: ");
+        String password = getUserDataInput("password: ");
+        authentication.login(userId, password);
     }
 
     private void printBooksInLibrary() {
@@ -89,24 +101,35 @@ public class BibliotecaApp {
 
     private void printMenu() {
         writer.println("Choose an option");
-        writer.println("0. Quit menu");
+        writer.println("0. Logout");
         writer.println("1. List of books");
         writer.println("2. Return a book");
         writer.println("3. List of movies");
     }
 
+    private String getUserDataInput(String prompt) {
+        String userId = null;
+        writer.println(prompt);
+        try {
+            userId = reader.readLine();
+        } catch (IOException e) {
+            System.exit(1);
+        }
+        return userId;
+    }
+
+
     public int readOption() {
-        Optional<String> optionalString = Optional.empty();
-        int chosenBookOrder = 0;
+        Optional<String> optionalString;
         try {
             String line = reader.readLine();
             optionalString = Optional.ofNullable(line);
             if (optionalString.isPresent()) {
-                chosenBookOrder = parseOption(line);
+                return parseOption(line);
             }
         } catch (IOException ignored) {
         }
-        return chosenBookOrder;
+        return 0;
     }
 
     public void checkOutBook() {
@@ -156,10 +179,6 @@ public class BibliotecaApp {
 
     }
 
-    public Boolean getReadingFromConsole() {
-        return readingFromConsole;
-    }
-
     public void returnBook() {
         int chosenBookOrder = readOption();
         if (chosenBookOrder < 0) {
@@ -179,9 +198,8 @@ public class BibliotecaApp {
             writer.println("This is not a valid book to return.");
             printMenu();
         }
-
-
     }
+
 
     public static void main(String[] args) {
         Library library = new Library(Arrays.asList(
@@ -198,7 +216,16 @@ public class BibliotecaApp {
                 new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
         ));
 
-        BibliotecaApp biblioteca = new BibliotecaApp(System.out, new BufferedReader(new InputStreamReader(System.in)), library);
+        Users users = new Users(Arrays.asList(
+                new User("harry", "potter"),
+                new User("golum", "keeptheringsafe"),
+                new User("timon", "akunamatata"),
+                new User("sebastian", "iliveunderthewater"),
+                new User("lupita", "ihavebeenkissedbythesun")
+        ));
+
+        Authentication authentication = new Authentication(users);
+        BibliotecaApp biblioteca = new BibliotecaApp(System.out, new BufferedReader(new InputStreamReader(System.in)), library, authentication);
         biblioteca.run();
     }
 }

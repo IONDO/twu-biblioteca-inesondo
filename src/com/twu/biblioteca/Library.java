@@ -24,10 +24,6 @@ public class Library {
         return books.indexOf(book);
     }
 
-    public int size() {
-        return books.size();
-    }
-
     public List<Book> getBooks() {
         return books;
     }

@@ -38,21 +38,23 @@ public class BibliotecaApp {
                             reader.close();
                             break;
                         case 1:
-                            printBooksInLibraby();
+                            printBooksInLibrary();
                             checkOutBook();
                             break;
                         case 2:
                             returnBook();
                             break;
                         case 3:
-                            printMoviesInLibraby();
+                            printMoviesInLibrary();
                             checkOutMovie();
                             break;
                         default:
                             writer.println("Please select a valid option!");
                     }
-                } reader.close();
-            } catch (IOException e) {}
+                }
+                reader.close();
+            } catch (IOException e) {
+            }
         }
     }
 
@@ -60,7 +62,7 @@ public class BibliotecaApp {
         writer.println("Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!");
     }
 
-    private void printBooksInLibraby() {
+    private void printBooksInLibrary() {
         int orderedList = 1;
         for (Book book : library.getBooks()) {
             writer.println(orderedList + ". " + book.getTitle() + " | " + book.getAuthor() + " | " + book.getPublishedYear());
@@ -68,7 +70,7 @@ public class BibliotecaApp {
         }
     }
 
-    private void printMoviesInLibraby() {
+    private void printMoviesInLibrary() {
         int orderedList = 1;
         for (Movie movie : library.getMovies()) {
             writer.println(orderedList + ". " + movie.getName() + " | "
@@ -93,7 +95,7 @@ public class BibliotecaApp {
         writer.println("3. List of movies");
     }
 
-    public int readLine() {
+    public int readOption() {
         Optional<String> optionalString = Optional.empty();
         int chosenBookOrder = 0;
         try {
@@ -108,46 +110,46 @@ public class BibliotecaApp {
     }
 
     public void checkOutBook() {
-        int chosenBookOrder = readLine();
+        int chosenBookOrder = readOption();
         if (chosenBookOrder < 0) {
             writer.println("Please, select a valid option.");
             printMenu();
             return;
         }
-        if (chosenBookOrder <= library.size() && chosenBookOrder > 0) {
+        if (chosenBookOrder <= library.getBooks().size() && chosenBookOrder > 0) {
             Book chosenBook = library.getBook(chosenBookOrder);
-            if (chosenBook.getStatusCheckedOut() == true || chosenBook == null) {
+            if (chosenBook.getStatusCheckedOut()) {
                 writer.println("Sorry, " + chosenBook.getTitle() + " is not available.");
                 printMenu();
-            } else if (chosenBookOrder <= library.size()) {
+            } else {
                 chosenBook.setStatusCheckedOut(true);
                 writer.println("Thank you! Enjoy reading " + chosenBook.getTitle() + ".");
                 printMenu();
             }
-        } else if(chosenBookOrder > library.size() || chosenBookOrder == 0) {
+        } else {
             writer.println("Please, select a valid option.");
             printMenu();
         }
     }
 
     public void checkOutMovie() {
-        int chosenMovieOrder = readLine();
+        int chosenMovieOrder = readOption();
         if (chosenMovieOrder < 0) {
             writer.println("Please, select a valid option.");
             printMenu();
             return;
         }
-        if (chosenMovieOrder <= library.size() && chosenMovieOrder > 0) {
+        if (chosenMovieOrder <= library.getMovies().size() && chosenMovieOrder > 0) {
             Movie chosenMovie = library.getMovie(chosenMovieOrder);
-            if (chosenMovie.getStatusCheckedOut() == true || chosenMovie == null) {
+            if (chosenMovie.getStatusCheckedOut()) {
                 writer.println("Sorry, " + chosenMovie.getName() + " is not available.");
                 printMenu();
-            } else if (chosenMovieOrder <= library.size()) {
+            } else {
                 chosenMovie.setStatusCheckedOut(true);
                 writer.println("Thank you! Enjoy watching " + chosenMovie.getName() + ".");
                 printMenu();
             }
-        } else if(chosenMovieOrder > library.size() || chosenMovieOrder == 0) {
+        } else {
             writer.println("Please, select a valid option.");
             printMenu();
         }
@@ -159,13 +161,13 @@ public class BibliotecaApp {
     }
 
     public void returnBook() {
-        int chosenBookOrder = readLine();
+        int chosenBookOrder = readOption();
         if (chosenBookOrder < 0) {
             return;
         }
-        if (chosenBookOrder <= library.size()) {
+        if (chosenBookOrder <= library.getBooks().size()) {
             Book chosenBook = library.getBook(chosenBookOrder);
-            if (chosenBook.getStatusCheckedOut() == true) {
+            if (chosenBook.getStatusCheckedOut()) {
                 chosenBook.setStatusCheckedOut(false);
                 writer.println("Thank you for returning " + chosenBook.getTitle() + ".");
                 printMenu();

@@ -17,7 +17,7 @@ public class LibraryTest {
         Book java = new Book("Java for beginners", "Oracle", 2000);
         books.addBook(java);
         int numberOfBooksInLibrary = 1;
-        assertThat(books.size(), equalTo(numberOfBooksInLibrary));
+        assertThat(books.getBooks().size(), equalTo(numberOfBooksInLibrary));
     }
 
     @Test
@@ -36,7 +36,7 @@ public class LibraryTest {
         books.addBook(react);
         books.addBook(jUnit);
         int numberOfBooksInLibrary = 5;
-        assertThat(books.size(), equalTo(numberOfBooksInLibrary));
+        assertThat(books.getBooks().size(), equalTo(numberOfBooksInLibrary));
     }
 
     @Test

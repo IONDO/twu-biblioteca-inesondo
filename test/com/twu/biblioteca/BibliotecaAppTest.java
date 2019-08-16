@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -49,7 +50,9 @@ public class BibliotecaAppTest {
                 "0. Logout\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
-                "3. List of movies\n";
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n";
         biblioteca.run();
         assertThat(getOutput(), equalTo(printedInfo));
     }
@@ -70,6 +73,8 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(getOutput(), endsWith(expectedMessage));
@@ -87,6 +92,8 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(getOutput(), equalTo(expectedMessage));
@@ -113,6 +120,8 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -123,7 +132,9 @@ public class BibliotecaAppTest {
                 "0. Logout\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
-                "3. List of movies\n";
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -140,6 +151,8 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -150,7 +163,9 @@ public class BibliotecaAppTest {
                 "0. Logout\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
-                "3. List of movies\n";
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n";
         assertThat(getOutput(), equalTo(expectedMessage));
     }
 
@@ -159,12 +174,13 @@ public class BibliotecaAppTest {
         BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "1\n" + "1\n" + "1\n" + "1\n"));
         BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
         biblioteca.run();
-        String expectedMessage =
-                "Choose an option\n" +
+        String expectedMessage = "Choose an option\n" +
                 "0. Logout\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -176,6 +192,8 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -186,7 +204,9 @@ public class BibliotecaAppTest {
                 "0. Logout\n" + ///
                 "1. List of books\n" +
                 "2. Return a book\n" +
-                "3. List of movies\n";
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -195,12 +215,16 @@ public class BibliotecaAppTest {
         BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "1\n" + "2\n" + "2\n" + "2\n"));
         BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
         biblioteca.run();
-        String expectedMessage =
+        String expectedMessage = "Welcome to Biblioteca. Your one-stop shop for great book titles in Bangalore!\n" +
+                "userId: \n" +
+                "password: \n" +
                 "Choose an option\n" +
                 "0. Logout\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -212,12 +236,16 @@ public class BibliotecaAppTest {
                 "1. List of books\n" +
                 "2. Return a book\n" +
                 "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
                 "Thank you for returning JavaScript for beginners.\n" +
                 "Choose an option\n" +
                 "0. Logout\n" +
                 "1. List of books\n" +
                 "2. Return a book\n" +
-                "3. List of movies\n";
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -228,27 +256,33 @@ public class BibliotecaAppTest {
         biblioteca.run();
         String expectedMessage =
                 "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n" +
-                "1. Java for beginners | Oracle | 2000\n" +
-                "2. JavaScript for beginners | ES | 2006\n" +
-                "3. Node for beginners | Node | 2007\n" +
-                "4. React for beginners | React | 2016\n" +
-                "5. jUnit for beginners | Tester | 2005\n" +
-                "Thank you! Enjoy reading JavaScript for beginners.\n" +
-                "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n" +
-                "Java for beginners is not a valid book to return.\n" +
-                "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n";
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Java for beginners | Oracle | 2000\n" +
+                        "2. JavaScript for beginners | ES | 2006\n" +
+                        "3. Node for beginners | Node | 2007\n" +
+                        "4. React for beginners | React | 2016\n" +
+                        "5. jUnit for beginners | Tester | 2005\n" +
+                        "Thank you! Enjoy reading JavaScript for beginners.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "Java for beginners is not a valid book to return.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -259,10 +293,12 @@ public class BibliotecaAppTest {
         biblioteca.run();
         String expectedMessage =
                 "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n";
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -273,21 +309,25 @@ public class BibliotecaAppTest {
         biblioteca.run();
         String expectedMessage =
                 "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n" +
-                "1. Titanic | James Cameron | 1998 | 7.8\n" +
-                "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
-                "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
-                "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
-                "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
-                "Please, select a valid option.\n" +
-                "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n";
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Titanic | James Cameron | 1998 | 7.8\n" +
+                        "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
+                        "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
+                        "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
+                        "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
+                        "Please, select a valid option.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -298,21 +338,25 @@ public class BibliotecaAppTest {
         biblioteca.run();
         String expectedMessage =
                 "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n" +
-                "1. Titanic | James Cameron | 1998 | 7.8\n" +
-                "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
-                "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
-                "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
-                "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
-                "Thank you! Enjoy watching Titanic.\n" +
-                "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n";
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Titanic | James Cameron | 1998 | 7.8\n" +
+                        "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
+                        "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
+                        "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
+                        "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
+                        "Thank you! Enjoy watching Titanic.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -323,21 +367,181 @@ public class BibliotecaAppTest {
         biblioteca.run();
         String expectedMessage =
                 "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n" +
-                "1. Titanic | James Cameron | 1998 | 7.8\n" +
-                "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
-                "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
-                "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
-                "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
-                "Please, select a valid option.\n" +
-                "Choose an option\n" +
-                "0. Logout\n" +
-                "1. List of books\n" +
-                "2. Return a book\n" +
-                "3. List of movies\n";
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Titanic | James Cameron | 1998 | 7.8\n" +
+                        "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
+                        "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
+                        "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
+                        "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
+                        "Please, select a valid option.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
+    @Test
+    public void testCheckWhoHasTheBookCheckedOut() {
+        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "1\n" + "2\n" + "4\n" + "2\n"));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
+        biblioteca.run();
+        String expectedMessage =
+                "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Java for beginners | Oracle | 2000\n" +
+                        "2. JavaScript for beginners | ES | 2006\n" +
+                        "3. Node for beginners | Node | 2007\n" +
+                        "4. React for beginners | React | 2016\n" +
+                        "5. jUnit for beginners | Tester | 2005\n" +
+                        "Thank you! Enjoy reading JavaScript for beginners.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Java for beginners | Oracle | 2000\n" +
+                        "2. JavaScript for beginners | ES | 2006\n" +
+                        "3. Node for beginners | Node | 2007\n" +
+                        "4. React for beginners | React | 2016\n" +
+                        "5. jUnit for beginners | Tester | 2005\n" +
+                        "JavaScript for beginners was checkout by harry.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
+        assertThat(getOutput(), endsWith(expectedMessage));
+    }
+
+    @Test
+    public void testCheckWhoHasTheBookCheckedOutWithAnInvalidInput() {
+        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "1\n" + "2\n" + "4\n" + "6\n"));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
+        biblioteca.run();
+        String expectedMessage =
+                "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Java for beginners | Oracle | 2000\n" +
+                        "2. JavaScript for beginners | ES | 2006\n" +
+                        "3. Node for beginners | Node | 2007\n" +
+                        "4. React for beginners | React | 2016\n" +
+                        "5. jUnit for beginners | Tester | 2005\n" +
+                        "Thank you! Enjoy reading JavaScript for beginners.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Java for beginners | Oracle | 2000\n" +
+                        "2. JavaScript for beginners | ES | 2006\n" +
+                        "3. Node for beginners | Node | 2007\n" +
+                        "4. React for beginners | React | 2016\n" +
+                        "5. jUnit for beginners | Tester | 2005\n" +
+                        "Please, select a valid option.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
+        assertThat(getOutput(), endsWith(expectedMessage));
+    }
+    @Test
+    public void testCheckWhoHasTheMovieCheckedOut() {
+        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "3\n" + "2\n" + "5\n" + "2\n"));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
+        biblioteca.run();
+        String expectedMessage =
+                "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Titanic | James Cameron | 1998 | 7.8\n" +
+                        "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
+                        "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
+                        "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
+                        "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
+                        "Thank you! Enjoy watching Twelve Angry Men.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "1. Titanic | James Cameron | 1998 | 7.8\n" +
+                        "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
+                        "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
+                        "4. The Color Purple | Steven Spielberg | 1986 | 7.8\n" +
+                        "5. The Lion King | Rob Minkoff and Roger Allers | 1994 | 8.5\n" +
+                        "Twelve Angry Men was checkout by harry.\n" +
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n";
+        assertThat(getOutput(), endsWith(expectedMessage));
+    }
+
+    @Test @Ignore
+    public void testUserCanDisplayPersonalData() {
+        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "3\n" + "2\n" + "5\n" + "2\n"));
+        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
+        biblioteca.run();
+        String expectedMessage =
+                "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "6. User profile\n" +
+                        "username: harry potter\n" +
+                        "email: tesing@test.com\n" +
+                        "phone: 555-555"+
+                        "Choose an option\n" +
+                        "0. Logout\n" +
+                        "1. List of books\n" +
+                        "2. Return a book\n" +
+                        "3. List of movies\n" +
+                        "4. Check who has checkout a book\n" +
+                        "5. Check who has checkout a movie\n" +
+                        "6. User profile";
+        assertThat(getOutput(), endsWith(expectedMessage));
+    }
+
+
+
+
 }

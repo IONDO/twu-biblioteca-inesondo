@@ -12,13 +12,14 @@ public class BibliotecaApp {
     private final BufferedReader reader;
     private final Library library;
     private final Authentication authentication;
-
+    private User userWithBorrowedContent;
 
     public BibliotecaApp(PrintStream writer, BufferedReader reader, Library library, Authentication authentication) {
         this.writer = writer;
         this.reader = reader;
         this.library = library;
         this.authentication = authentication;
+        userWithBorrowedContent = null;
     }
 
     public void run() {
@@ -45,6 +46,14 @@ public class BibliotecaApp {
                         printMoviesInLibrary();
                         checkOutMovie();
                         break;
+                    case 4:
+                        printBooksInLibrary();
+                        getWhoHasBookCheckedOut();
+                        break;
+                    case 5:
+                        printMoviesInLibrary();
+                        getWhoHasMovieCheckedOut();
+                        break;
                     default:
                         writer.println("Please select a valid option!");
                 }
@@ -61,11 +70,11 @@ public class BibliotecaApp {
 
     private void authenticateUser() {
         authenticationAttempt();
+        userWithBorrowedContent = authentication.getCurrentUserData();
         while (!authentication.isLoggedIn()) {
             writer.println("Either the userId or the password is incorrect");
             authenticationAttempt();
         }
-        ;
     }
 
     private void authenticationAttempt() {
@@ -105,6 +114,8 @@ public class BibliotecaApp {
         writer.println("1. List of books");
         writer.println("2. Return a book");
         writer.println("3. List of movies");
+        writer.println("4. Check who has checkout a book");
+        writer.println("5. Check who has checkout a movie");
     }
 
     private String getUserDataInput(String prompt) {
@@ -117,7 +128,6 @@ public class BibliotecaApp {
         }
         return userId;
     }
-
 
     public int readOption() {
         Optional<String> optionalString;
@@ -146,6 +156,7 @@ public class BibliotecaApp {
                 printMenu();
             } else {
                 chosenBook.setStatusCheckedOut(true);
+                userWithBorrowedContent = authentication.getCurrentUserData();
                 writer.println("Thank you! Enjoy reading " + chosenBook.getTitle() + ".");
                 printMenu();
             }
@@ -169,6 +180,7 @@ public class BibliotecaApp {
                 printMenu();
             } else {
                 chosenMovie.setStatusCheckedOut(true);
+                userWithBorrowedContent = authentication.getCurrentUserData();
                 writer.println("Thank you! Enjoy watching " + chosenMovie.getName() + ".");
                 printMenu();
             }
@@ -177,6 +189,50 @@ public class BibliotecaApp {
             printMenu();
         }
 
+    }
+
+    public void getWhoHasBookCheckedOut() {
+        int chosenBookOrder = readOption();
+        if (chosenBookOrder < 0) {
+            writer.println("Please, select a valid option.");
+            printMenu();
+            return;
+        }
+        if (chosenBookOrder <= library.getBooks().size() && chosenBookOrder > 0) {
+            Book chosenBook = library.getBook(chosenBookOrder);
+            if (chosenBook.getStatusCheckedOut()) {
+                writer.println(chosenBook.getTitle() + " was checkout by " + userWithBorrowedContent.getUserId() + ".");
+                printMenu();
+            } else {
+                writer.println(chosenBook.getTitle() + " is currently available to checkout.");
+                printMenu();
+            }
+        } else {
+            writer.println("Please, select a valid option.");
+            printMenu();
+        }
+    }
+
+    public void getWhoHasMovieCheckedOut() {
+        int chosenMovieOrder = readOption();
+        if (chosenMovieOrder < 0) {
+            writer.println("Please, select a valid option.");
+            printMenu();
+            return;
+        }
+        if (chosenMovieOrder <= library.getMovies().size() && chosenMovieOrder > 0) {
+            Movie chosenMovie = library.getMovie(chosenMovieOrder);
+            if (chosenMovie.getStatusCheckedOut()) {
+                writer.println(chosenMovie.getName() + " was checkout by " + userWithBorrowedContent.getUserId() + ".");
+                printMenu();
+            } else {
+                writer.println(chosenMovie.getName() + " is currently available to checkout.");
+                printMenu();
+            }
+        } else {
+            writer.println("Please, select a valid option.");
+            printMenu();
+        }
     }
 
     public void returnBook() {

@@ -30,11 +30,11 @@ public class BibliotecaAppTest {
             new Movie("The Lion King", 1994, "Rob Minkoff and Roger Allers", 8.5)
     ));
     private Users users = new Users(Arrays.asList(
-            new User("harry", "potter"),
-            new User("golum", "keeptheringsafe"),
-            new User("timon", "akunamatata"),
-            new User("sebastian", "iliveunderthewater"),
-            new User("lupita", "ihavebeenkissedbythesun")
+            new User("harry", "potter", "harry@test.com", "555-1234"),
+            new User("golum", "keeptheringsafe", "golum@test.com", "555-5678"),
+            new User("timon", "akunamatata", "timon@test.com", "555-9012"),
+            new User("sebastian", "iliveunderthewater", "sebastian@test.com", "555-3456"),
+            new User("lupita", "ihavebeenkissedbythesun", "lupita@test.com", "555-7890")
     ));
 
     private Authentication authentication = new Authentication(users);
@@ -52,7 +52,8 @@ public class BibliotecaAppTest {
                 "2. Return a book\n" +
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
-                "5. Check who has checkout a movie\n";
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n";
         biblioteca.run();
         assertThat(getOutput(), equalTo(printedInfo));
     }
@@ -75,6 +76,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(getOutput(), endsWith(expectedMessage));
@@ -94,6 +96,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "Please select a valid option!\n";
         biblioteca.run();
         assertThat(getOutput(), equalTo(expectedMessage));
@@ -122,6 +125,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -134,7 +138,8 @@ public class BibliotecaAppTest {
                 "2. Return a book\n" +
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
-                "5. Check who has checkout a movie\n";
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -153,6 +158,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -165,7 +171,8 @@ public class BibliotecaAppTest {
                 "2. Return a book\n" +
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
-                "5. Check who has checkout a movie\n";
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n";
         assertThat(getOutput(), equalTo(expectedMessage));
     }
 
@@ -181,6 +188,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -194,6 +202,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -206,7 +215,8 @@ public class BibliotecaAppTest {
                 "2. Return a book\n" +
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
-                "5. Check who has checkout a movie\n";
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -225,6 +235,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "1. Java for beginners | Oracle | 2000\n" +
                 "2. JavaScript for beginners | ES | 2006\n" +
                 "3. Node for beginners | Node | 2007\n" +
@@ -238,6 +249,7 @@ public class BibliotecaAppTest {
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
                 "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
                 "Thank you for returning JavaScript for beginners.\n" +
                 "Choose an option\n" +
                 "0. Logout\n" +
@@ -245,7 +257,8 @@ public class BibliotecaAppTest {
                 "2. Return a book\n" +
                 "3. List of movies\n" +
                 "4. Check who has checkout a book\n" +
-                "5. Check who has checkout a movie\n";
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -262,6 +275,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Java for beginners | Oracle | 2000\n" +
                         "2. JavaScript for beginners | ES | 2006\n" +
                         "3. Node for beginners | Node | 2007\n" +
@@ -275,6 +289,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "Java for beginners is not a valid book to return.\n" +
                         "Choose an option\n" +
                         "0. Logout\n" +
@@ -282,23 +297,8 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
-        assertThat(getOutput(), endsWith(expectedMessage));
-    }
-
-    @Test
-    public void testDisplayMoviesOptionInTheMenu() {
-        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + ""));
-        BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
-        biblioteca.run();
-        String expectedMessage =
-                "Choose an option\n" +
-                        "0. Logout\n" +
-                        "1. List of books\n" +
-                        "2. Return a book\n" +
-                        "3. List of movies\n" +
-                        "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -315,6 +315,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Titanic | James Cameron | 1998 | 7.8\n" +
                         "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
                         "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
@@ -327,7 +328,8 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -344,6 +346,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Titanic | James Cameron | 1998 | 7.8\n" +
                         "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
                         "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
@@ -356,7 +359,8 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -373,6 +377,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Titanic | James Cameron | 1998 | 7.8\n" +
                         "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
                         "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
@@ -385,7 +390,8 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
     @Test
@@ -401,6 +407,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Java for beginners | Oracle | 2000\n" +
                         "2. JavaScript for beginners | ES | 2006\n" +
                         "3. Node for beginners | Node | 2007\n" +
@@ -414,6 +421,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Java for beginners | Oracle | 2000\n" +
                         "2. JavaScript for beginners | ES | 2006\n" +
                         "3. Node for beginners | Node | 2007\n" +
@@ -426,7 +434,8 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
@@ -443,6 +452,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Java for beginners | Oracle | 2000\n" +
                         "2. JavaScript for beginners | ES | 2006\n" +
                         "3. Node for beginners | Node | 2007\n" +
@@ -456,6 +466,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Java for beginners | Oracle | 2000\n" +
                         "2. JavaScript for beginners | ES | 2006\n" +
                         "3. Node for beginners | Node | 2007\n" +
@@ -468,7 +479,8 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
     @Test
@@ -484,6 +496,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Titanic | James Cameron | 1998 | 7.8\n" +
                         "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
                         "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
@@ -497,6 +510,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n" +
                         "1. Titanic | James Cameron | 1998 | 7.8\n" +
                         "2. Twelve Angry Men | Sidney Lumet | 1954 | 8.9\n" +
                         "3. A Walk to Remember | Adam Shankman | 2002 | 7.4\n" +
@@ -509,27 +523,27 @@ public class BibliotecaAppTest {
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n";
+                        "5. Check who has checkout a movie\n" +
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 
-    @Test @Ignore
+    @Test
     public void testUserCanDisplayPersonalData() {
-        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "3\n" + "2\n" + "5\n" + "2\n"));
+        BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "6\n"));
         BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
         biblioteca.run();
-        String expectedMessage =
-                "Choose an option\n" +
+        String expectedMessage = "Choose an option\n" +
                         "0. Logout\n" +
                         "1. List of books\n" +
                         "2. Return a book\n" +
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
-                        "6. User profile\n" +
-                        "username: harry potter\n" +
-                        "email: tesing@test.com\n" +
-                        "phone: 555-555"+
+                        "6. Your profile\n" +
+                        "username: harry\n" +
+                        "email: harry@test.com\n" +
+                        "phone: 555-1234\n"+
                         "Choose an option\n" +
                         "0. Logout\n" +
                         "1. List of books\n" +
@@ -537,11 +551,7 @@ public class BibliotecaAppTest {
                         "3. List of movies\n" +
                         "4. Check who has checkout a book\n" +
                         "5. Check who has checkout a movie\n" +
-                        "6. User profile";
+                        "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
-
-
-
-
 }

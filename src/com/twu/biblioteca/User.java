@@ -3,32 +3,31 @@ package com.twu.biblioteca;
 import java.util.List;
 
 public class User {
-    public String userId;
-    public String password;
-    public Library borrowedContent;
+    private String userId;
+    private String password;
+    public String email;
+    private String phone;
 
-    public User(String userId, String password) {
+    public User(String userId, String password, String email, String phone) {
         this.userId = userId;
         this.password = password;
+        this.email = email;
+        this.phone = phone;
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public void addBookTBorrowedContent(Book book) {
-        borrowedContent.addBook(book);
+    public String getPassword() {
+        return password;
     }
 
-    public void addMovieToBorrowedContent(Movie movie) {
-        borrowedContent.addMovie(movie);
+    public String getEmail() {
+        return email;
     }
 
-    public List<Book> getBorrowedBooks() {
-        return borrowedContent.getBooks();
+    public String getPhone() {
+        return phone;
     }
-    public List<Movie> getBorrowedMovies() {
-        return borrowedContent.getMovies();
-    }
-
 }

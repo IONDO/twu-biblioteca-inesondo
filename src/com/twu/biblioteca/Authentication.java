@@ -14,9 +14,9 @@ public class Authentication {
 
     public void login(String userId, String password) {
         for (User userInCollection : users.getUsers()) {
-            if (userInCollection.userId.equals(userId) && userInCollection.password.equals(password)) {
+            if (userInCollection.getUserId().equals(userId) && userInCollection.getPassword().equals(password)) {
                 currentUser = Optional.of(userInCollection);
-                currentUserData = new User(userInCollection.userId, userInCollection.password);
+                currentUserData = new User(userInCollection.getUserId(), userInCollection.getPassword(),userInCollection.getEmail(),userInCollection.getPhone());
                 break;
             }
         }

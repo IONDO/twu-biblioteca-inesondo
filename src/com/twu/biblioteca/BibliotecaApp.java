@@ -54,6 +54,9 @@ public class BibliotecaApp {
                         printMoviesInLibrary();
                         getWhoHasMovieCheckedOut();
                         break;
+                    case 6:
+                        printUserData();
+                        break;
                     default:
                         writer.println("Please select a valid option!");
                 }
@@ -116,6 +119,14 @@ public class BibliotecaApp {
         writer.println("3. List of movies");
         writer.println("4. Check who has checkout a book");
         writer.println("5. Check who has checkout a movie");
+        writer.println("6. Your profile");
+    }
+
+    private  void printUserData() {
+        writer.println("username: " + userWithBorrowedContent.getUserId());
+        writer.println("email: " + userWithBorrowedContent.getEmail());
+        writer.println("phone: " + userWithBorrowedContent.getPhone());
+        printMenu();
     }
 
     private String getUserDataInput(String prompt) {
@@ -273,11 +284,11 @@ public class BibliotecaApp {
         ));
 
         Users users = new Users(Arrays.asList(
-                new User("harry", "potter"),
-                new User("golum", "keeptheringsafe"),
-                new User("timon", "akunamatata"),
-                new User("sebastian", "iliveunderthewater"),
-                new User("lupita", "ihavebeenkissedbythesun")
+                new User("harry", "potter", "email: harry@test.com", "555-1234"),
+                new User("golum", "keeptheringsafe", "email: golum@test.com", "555-5678"),
+                new User("timon", "akunamatata", "email: timon@test.com", "555-9012"),
+                new User("sebastian", "iliveunderthewater", "email: sebastian@test.com", "555-3456"),
+                new User("lupita", "ihavebeenkissedbythesun", "email: lupita@test.com", "555-7890")
         ));
 
         Authentication authentication = new Authentication(users);

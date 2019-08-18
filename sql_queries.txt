@@ -1,0 +1,64 @@
+1. Who checked out the book 'The Hobbit’?
+Anand Beck
+
+SELECT "member".name
+FROM book JOIN checkout_item ON book.id = checkout_item.book_id
+JOIN "member" ON "member".id = checkout_item.member_id
+where book.title = 'The Hobbit';
+
+2. How many people have not checked out anything?
+37
+
+SELECT "member".id, "member".name
+FROM   "member" LEFT OUTER JOIN checkout_item ON "member".id = checkout_item.member_id
+WHERE checkout_item.member_id IS NULL;
+
+3. What books and movies aren't checked out?
+
+book	2	Fellowship of the Ring
+book	6	1984
+book	7	Tom Sawyer
+book	8	Catcher in the Rye
+book	9	To Kill a Mockingbird
+book	10	Domain Driven Design
+movie	6	Thin Red Line
+movie	7	Crouching Tiger, Hidden Dragon
+movie	8	Lawrence of Arabia
+movie	9	Office Space
+
+SELECT 'book', book.id as book_id, book.title
+FROM   book LEFT OUTER JOIN checkout_item ON book.id = checkout_item.book_id
+WHERE checkout_item.book_id IS NULL
+UNION
+SELECT 'movie', movie.id, movie.title
+FROM   movie LEFT OUTER JOIN checkout_item ON movie.id = checkout_item.movie_id
+WHERE checkout_item.movie_id IS NULL;
+
+4. Add the book 'The Pragmatic Programmer', and add yourself as a member. Check out 'The Pragmatic Programmer'.
+Use your query from question 1 to verify that you have checked it out. Also, provide the SQL used to update the database.
+
+-- Add the book 'The Pragmatic Programmer', and add yourself as a member.
+
+INSERT INTO book VALUES (11, "The Pragmatic Programmer");
+INSERT INTO "member" VALUES (43, "Ines Ondo");
+
+-- Check out 'The Pragmatic Programmer'.
+
+INSERT INTO checkout_item VALUES (43, 11, NULL);
+
+-- Use your query from question 1 to verify that you have checked it out.
+
+SELECT "member".name
+FROM book JOIN checkout_item ON book.id = checkout_item.book_id
+JOIN "member" ON "member".id = checkout_item.member_id
+where book.title = 'The Pragmatic Programmer';
+
+5. Who has checked out more that 1 item?
+
+Anand Beck
+Frank Smith
+
+SELECT member_id, "member".name, COUNT(*)
+FROM checkout_item JOIN "member" ON checkout_item.member_id = "member".id
+GROUP BY 1,2
+HAVING COUNT(*) > 1;

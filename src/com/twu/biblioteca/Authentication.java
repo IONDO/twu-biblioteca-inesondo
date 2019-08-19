@@ -16,7 +16,7 @@ public class Authentication {
         for (User userInCollection : users.getUsers()) {
             if (userInCollection.getUserId().equals(userId) && userInCollection.getPassword().equals(password)) {
                 currentUser = Optional.of(userInCollection);
-                currentUserData = new User(userInCollection.getUserId(), userInCollection.getPassword(),userInCollection.getEmail(),userInCollection.getPhone());
+                currentUserData = new User(userInCollection.getUserId(), userInCollection.getPassword(), userInCollection.getEmail(), userInCollection.getPhone());
                 break;
             }
         }
@@ -26,7 +26,7 @@ public class Authentication {
         return currentUserData;
     }
 
-    public boolean isLoggedIn(){
+    public boolean isLoggedIn() {
         return currentUser.isPresent();
     }
 

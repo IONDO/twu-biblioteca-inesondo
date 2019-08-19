@@ -122,7 +122,7 @@ public class BibliotecaApp {
         writer.println("6. Your profile");
     }
 
-    private  void printUserData() {
+    private void printUserData() {
         writer.println("username: " + userWithBorrowedContent.getUserId());
         writer.println("email: " + userWithBorrowedContent.getEmail());
         writer.println("phone: " + userWithBorrowedContent.getPhone());

@@ -1,6 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.*;
 import java.util.List;
 
 public class Library {
@@ -14,10 +13,6 @@ public class Library {
 
     public void addBook(Book book) {
         books.add(book);
-    }
-
-    public void addMovie(Movie movie) {
-        movies.add(movie);
     }
 
     public int getBookOrder(Book book) {

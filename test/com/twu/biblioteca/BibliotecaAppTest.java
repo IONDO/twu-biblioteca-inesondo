@@ -394,6 +394,7 @@ public class BibliotecaAppTest {
                         "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
+
     @Test
     public void testCheckWhoHasTheBookCheckedOut() {
         BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "1\n" + "2\n" + "4\n" + "2\n"));
@@ -483,6 +484,7 @@ public class BibliotecaAppTest {
                         "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
+
     @Test
     public void testCheckWhoHasTheMovieCheckedOut() {
         BufferedReader reader = new BufferedReader(new StringReader("harry\n" + "potter\n" + "3\n" + "2\n" + "5\n" + "2\n"));
@@ -534,24 +536,24 @@ public class BibliotecaAppTest {
         BibliotecaApp biblioteca = new BibliotecaApp(writer, reader, library, authentication);
         biblioteca.run();
         String expectedMessage = "Choose an option\n" +
-                        "0. Logout\n" +
-                        "1. List of books\n" +
-                        "2. Return a book\n" +
-                        "3. List of movies\n" +
-                        "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n" +
-                        "6. Your profile\n" +
-                        "username: harry\n" +
-                        "email: harry@test.com\n" +
-                        "phone: 555-1234\n"+
-                        "Choose an option\n" +
-                        "0. Logout\n" +
-                        "1. List of books\n" +
-                        "2. Return a book\n" +
-                        "3. List of movies\n" +
-                        "4. Check who has checkout a book\n" +
-                        "5. Check who has checkout a movie\n" +
-                        "6. Your profile\n";
+                "0. Logout\n" +
+                "1. List of books\n" +
+                "2. Return a book\n" +
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n" +
+                "username: harry\n" +
+                "email: harry@test.com\n" +
+                "phone: 555-1234\n" +
+                "Choose an option\n" +
+                "0. Logout\n" +
+                "1. List of books\n" +
+                "2. Return a book\n" +
+                "3. List of movies\n" +
+                "4. Check who has checkout a book\n" +
+                "5. Check who has checkout a movie\n" +
+                "6. Your profile\n";
         assertThat(getOutput(), endsWith(expectedMessage));
     }
 }

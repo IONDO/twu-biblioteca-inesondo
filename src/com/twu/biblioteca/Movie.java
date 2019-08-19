@@ -38,8 +38,4 @@ public class Movie {
     public double getRating() {
         return rating;
     }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
 }
